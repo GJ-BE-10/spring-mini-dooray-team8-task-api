@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter
@@ -28,7 +29,6 @@ public class MileStone {
     @Column(name = "mileStone_end_date")
     private LocalDate endDate;
 
-    @JoinColumn(name = "milestone_project_id", nullable = true)
-    @ManyToOne
-    private Project project;
+    @OneToMany(mappedBy = "mileStone")
+    private List<Project> projects;
 }

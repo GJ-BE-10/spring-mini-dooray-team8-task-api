@@ -30,19 +30,20 @@ public class Project {
     private ProjectStatus status;
 
     @OneToMany(mappedBy = "project")
-    List<Task> tasks = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
 
     @OneToMany(mappedBy = "project")
-    List<Tag> tags = new ArrayList<>();
+    private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany(mappedBy = "project")
-    List<MileStone> mileStones = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn
+    private MileStone mileStone;
 
     public Project(ProjectCreationDto dto) {
         this.adminId = dto.getOwnerId();
         this.name = dto.getProjectName();
         this.status = ProjectStatus.fromString(dto.getProjectStatus());
         this.tags = dto.getTags();
-        this.mileStones = dto.getMilestones();
+        this.mileStone = dto.getMilestone();
     }
 }

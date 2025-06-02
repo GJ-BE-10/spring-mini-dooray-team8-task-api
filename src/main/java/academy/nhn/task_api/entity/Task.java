@@ -28,6 +28,9 @@ public class Task {
     @Column(name = "task_author_id")
     private int authorId;
 
+    @Column(name = "task_title")
+    private String title;
+
     @Column(name = "task_content", length = 5000)
     private String content;
 
