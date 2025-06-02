@@ -11,4 +11,13 @@ public enum ProjectStatus {
     public String getStatusName() {
         return statusName;
     }
+
+    public static ProjectStatus fromString(String str) {
+        for (ProjectStatus status : ProjectStatus.values()) {
+            if (status.getStatusName().equals(str)) {
+                return status;
+            }
+        }
+        return null;
+    }
 }

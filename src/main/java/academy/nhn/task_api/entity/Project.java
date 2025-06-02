@@ -1,5 +1,6 @@
 package academy.nhn.task_api.entity;
 
+import academy.nhn.task_api.entity.dto.ProjectCreationDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -36,4 +37,12 @@ public class Project {
 
     @OneToMany(mappedBy = "project")
     List<MileStone> mileStones = new ArrayList<>();
+
+    public Project(ProjectCreationDto dto) {
+        this.adminId = dto.getOwnerId();
+        this.name = dto.getProjectName();
+        this.status = ProjectStatus.fromString(dto.getProjectStatus());
+        this.tags = dto.getTags();
+        this.mileStones = dto.getMilestones();
+    }
 }
