@@ -29,6 +29,6 @@ public class MileStone {
     @Column(name = "mileStone_end_date")
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = "mileStone")
-    private List<Project> projects;
+    @ManyToOne
+    private Project projects;
 }

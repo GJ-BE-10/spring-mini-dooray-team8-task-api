@@ -6,6 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,4 +27,13 @@ public class Tag {
     @JoinColumn(name = "tag_project_id", nullable = true)
     @ManyToOne
     private Project project;
+
+    @OneToMany(mappedBy = "tag")
+    private Set<TaskTag> taskTags = new HashSet<>();
+
+    public void addTask(Task task) {
+        TaskTag taskTag = new TaskTag(task, this);
+        taskTags.add(taskTag);
+        task.getTaskTags().add(taskTag);
+    }
 }

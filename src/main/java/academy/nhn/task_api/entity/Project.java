@@ -35,15 +35,14 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Tag> tags = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn
-    private MileStone mileStone;
+    @OneToMany
+    private List<MileStone> mileStones = new ArrayList<>();
 
     public Project(ProjectCreationDto dto) {
         this.adminId = dto.getOwnerId();
         this.name = dto.getProjectName();
         this.status = ProjectStatus.fromString(dto.getProjectStatus());
         this.tags = dto.getTags();
-        this.mileStone = dto.getMilestone();
+        this.mileStones = dto.getMilestones();
     }
 }

@@ -4,10 +4,7 @@ import academy.nhn.task_api.entity.Task;
 import academy.nhn.task_api.exception.InvalidAccessException;
 import academy.nhn.task_api.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -26,4 +23,7 @@ public class TaskController {
         }
         return taskOptional.get();
     }
+
+    @PostMapping("/{userId}/projects/{projectId}/tasks/new")
+    public void createTask(@PathVariable String userId, @PathVariable String projectId, ...)
 }

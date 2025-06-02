@@ -18,5 +18,5 @@ public class ProjectCreationDto {
     private String ownerId;
     private String projectStatus;
     private List<Tag> tags;
-    private MileStone milestone;
+    private List<MileStone> milestones;
 }

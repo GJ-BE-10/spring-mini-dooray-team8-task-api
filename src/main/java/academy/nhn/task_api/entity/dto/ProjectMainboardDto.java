@@ -20,6 +20,6 @@ public class ProjectMainboardDto {
     private String ProjectStatus;
     private List<TaskIdTitleView> taskIdTitleViews;
     private List<Tag> tags;
-    private MileStone mileStone;
+    private List<MileStone> mileStones;
 
 }

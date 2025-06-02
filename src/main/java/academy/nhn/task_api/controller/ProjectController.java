@@ -53,7 +53,7 @@ public class ProjectController {
                                                                             project.getStatus().getStatusName(),
                                                                             taskIdTitleViews,
                                                                             project.getTags(),
-                                                                            project.getMileStone());
+                                                                            project.getMileStones());
         return projectMainboardDto;
     }
 }
