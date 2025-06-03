@@ -1,5 +1,6 @@
 package academy.nhn.task_api.entity;
 
+import academy.nhn.task_api.entity.dto.TaskCreationDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -44,18 +45,19 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private Set<TaskTag> taskTags = new HashSet<>();
 
+    public Task(TaskCreationDto dto, Project project) {
+        this.title = dto.getTitle();
+        this.content = dto.getContent();
+        this.authorId = Integer.parseInt(dto.getAuthorId());
+        this.project = project;
+        this.mileStoneId = dto.getMileStone().getId();
+        this.createdAt = LocalDateTime.now();
+    }
+
     public void addTag(Tag tag) {
         TaskTag taskTag = new TaskTag(this, tag);
         taskTags.add(taskTag);
         tag.getTaskTags().add(taskTag);
     }
-
-    /*
-    * public void addDepartment(Department department) {
-        EmployeeDepartment relation = new EmployeeDepartment(this, department);
-        employeeDepartments.add(relation);
-        department.getEmployeeDepartments().add(relation);
-    }
-    * */
 
 }
