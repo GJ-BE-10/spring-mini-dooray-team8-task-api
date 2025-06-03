@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class TaskController {
 
-    private final TaskRepository taskRepository;
     private final TaskService taskService;
 
 
@@ -31,6 +30,11 @@ public class TaskController {
     @PutMapping("/{userId}/projects/{projectId}/tasks/{taskId}")
     public void editTask(@PathVariable String userId, @PathVariable int projectId, @PathVariable int taskId, @RequestBody Task updatedTask) {
         Task task = taskService.findTaskById(taskId);
-        taskRepository.save(updatedTask);
+        taskService.saveTask(updatedTask);
+    }
+
+    @DeleteMapping("/{userId}/projects/{projectId}/tasks/{taskId}")
+    public void deleteTask(@PathVariable String userId, @PathVariable int projectId, @PathVariable int taskId) {
+        taskService.deleteTaskById(taskId);
     }
 }
