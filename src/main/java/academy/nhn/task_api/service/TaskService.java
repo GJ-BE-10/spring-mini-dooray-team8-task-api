@@ -21,4 +21,13 @@ public class TaskService {
         Task task = new Task(dto, project);
         return taskRepository.save(task);
     }
+
+    public Task findTaskById(int taskId) {
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new EntityNotFoundException());
+        return task;
+    }
+
+    public void saveTask(Task task) {
+        taskRepository.save(task);
+    }
 }
