@@ -1,5 +1,6 @@
 package academy.nhn.task_api.entity;
 
+import academy.nhn.task_api.entity.dto.CommentAuthorContentDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -36,4 +37,10 @@ public class Comment {
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
     //대댓글 필드 추가해야함. 어노테이션 manyToOne, oneToMany가 필요할 것 같은데 어떻게 해야할 지 모르겠음
+
+    public Comment(Task task, CommentAuthorContentDto dto) {
+        this.authorId = dto.getAuthorId();
+        this.content = dto.getContent();
+        this.task = task;
+    }
 }
