@@ -33,6 +33,7 @@ public class TaskController {
         taskService.saveTask(updatedTask);
     }
 
+
     @DeleteMapping("/{userId}/projects/{projectId}/tasks/{taskId}")
     public void deleteTask(@PathVariable String userId, @PathVariable int projectId, @PathVariable int taskId) {
         taskService.deleteTaskById(taskId);
