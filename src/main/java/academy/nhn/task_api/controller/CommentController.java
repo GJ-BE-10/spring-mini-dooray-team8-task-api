@@ -21,8 +21,7 @@ public class CommentController {
 
     @PutMapping("/{userId}/projects/{projectId}/tasks/{taskId}/comments/{commentId}")
     public ResponseEntity<Void> updateComment(@PathVariable String userId, @PathVariable int projectId, @PathVariable int taskId, @PathVariable int commentId, @RequestBody Comment comment) {
-        Comment oldComment = commentService.findById(comment.getId());
-        commentService.saveComment(comment);
+        commentService.editComment(comment);
         return ResponseEntity.noContent().build();
     }
 

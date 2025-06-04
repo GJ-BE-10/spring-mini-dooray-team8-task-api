@@ -1,6 +1,6 @@
 package academy.nhn.task_api.entity;
 
-import academy.nhn.task_api.entity.dto.TaskCreationDto;
+import academy.nhn.task_api.entity.dto.TaskDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,9 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -24,14 +22,15 @@ public class Task {
     private int id;
 
     @Column(name = "task_milestone_id")
-    private int mileStoneId;
+    @OneToOne
+    private MileStone mileStone;
 
     @ManyToOne
     @JoinColumn(name = "task_project_id")
     private Project project;
 
     @Column(name = "task_author_id")
-    private int authorId;
+    private String authorId;
 
     @Column(name = "task_title")
     private String title;
@@ -45,12 +44,12 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private Set<TaskTag> taskTags = new HashSet<>();
 
-    public Task(TaskCreationDto dto, Project project) {
+    public Task(TaskDto dto, Project project) {
         this.title = dto.getTitle();
         this.content = dto.getContent();
-        this.authorId = Integer.parseInt(dto.getAuthorId());
+        this.authorId = dto.getAuthorId();
         this.project = project;
-        this.mileStoneId = dto.getMileStone().getId();
+        this.mileStone = dto.getMileStone();
         this.createdAt = LocalDateTime.now();
     }
 
@@ -60,4 +59,9 @@ public class Task {
         tag.getTaskTags().add(taskTag);
     }
 
+    public void updateFromDto(TaskDto dto) {
+    this.title = dto.getTitle();
+    this.content = dto.getContent();
+    this.mileStone = dto.getMileStone();
+    }
 }

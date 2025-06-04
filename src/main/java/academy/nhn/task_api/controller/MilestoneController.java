@@ -21,8 +21,7 @@ public class MilestoneController {
 
     @PutMapping("/{userId}/projects/{projectId}/milestones/{mileStoneId}")
     public ResponseEntity<Void> updateMilestone(@PathVariable String userId, @PathVariable int projectId, @PathVariable int mileStoneId, @RequestBody MileStone mileStone) {
-        MileStone oldMileStone = milestoneService.findById(mileStone.getId());
-        milestoneService.saveMileStone(mileStone);
+        milestoneService.editMileStone(mileStone);
 
         return ResponseEntity.noContent().build(); // 204 No Content 응답
     }

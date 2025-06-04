@@ -7,16 +7,19 @@ import academy.nhn.task_api.repository.CommentRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CommentService {
+
     private final TaskService taskService;
     private final CommentRepository commentRepository;
 
-    public Comment createComment(int  taskId, CommentAuthorContentDto dto) {
+    public Comment createComment(int taskId, CommentAuthorContentDto dto) {
         Task task = taskService.findTaskById(taskId);
         Comment comment = new Comment(task, dto);
         return comment;
@@ -26,6 +29,10 @@ public class CommentService {
         commentRepository.save(comment);
     }
 
+    public void editComment(Comment comment) {
+        Comment cmt = findById(comment.getId());
+        cmt.setContent(comment.getContent());
+    }
     public Comment findById(int id) {
         Optional<Comment> commentOptional = commentRepository.findById(id);
         return commentOptional.orElseThrow(() -> new EntityNotFoundException());

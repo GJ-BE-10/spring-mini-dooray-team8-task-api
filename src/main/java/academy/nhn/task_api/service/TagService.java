@@ -5,9 +5,11 @@ import academy.nhn.task_api.repository.TagRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class TagService {
 
     private final TagRepository tagRepository;
@@ -18,6 +20,11 @@ public class TagService {
 
     public void saveTag(Tag tag) {
         tagRepository.save(tag);
+    }
+
+    public void editTag(Tag tag) {
+        Tag existingTag = findById(tag.getId());
+        existingTag.setName(tag.getName());
     }
 
     public void deleteTag(int id) {

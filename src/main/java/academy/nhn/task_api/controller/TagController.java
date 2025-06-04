@@ -20,8 +20,7 @@ public class TagController {
 
     @PutMapping("/{userId}/projects/{projectId}/tags/{tagId}")
     public HttpEntity<Void> updateTag(@PathVariable String userId, @PathVariable int projectId, @PathVariable int tagId, Tag tag) {
-        Tag oldTag = tagService.findById(tagId);
-        tagService.saveTag(tag);
+        tagService.editTag(tag);
         return ResponseEntity.noContent().build();
     }
 
