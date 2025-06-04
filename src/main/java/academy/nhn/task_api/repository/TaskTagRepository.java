@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface TaskTagRepository extends JpaRepository<TaskTag, Integer> {
     void deleteByTaskAndTag(Task task, Tag tag);
+
+    void deleteAllByTag(Tag tag);
 }
