@@ -7,11 +7,11 @@ import academy.nhn.task_api.entity.dto.ProjectCreationDto;
 import academy.nhn.task_api.entity.dto.ProjectIdNameView;
 import academy.nhn.task_api.entity.dto.ProjectMainboardDto;
 import academy.nhn.task_api.repository.ProjectRepository;
-import academy.nhn.task_api.service.ProjectService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
@@ -22,7 +22,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 @Transactional
-class ProjectControllerIntegrationTest {
+@Component
+class ProjectControllerTest {
 
     @Autowired
     private ProjectController projectController;
@@ -30,7 +31,7 @@ class ProjectControllerIntegrationTest {
     @Autowired
     private ProjectRepository projectRepository;
 
-    private ProjectCreationDto dto;
+    ProjectCreationDto dto;
 
     @BeforeEach
     void setUp() {

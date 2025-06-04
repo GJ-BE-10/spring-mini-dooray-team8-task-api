@@ -34,4 +34,13 @@ public class TaskDto {
         this.tags = tags;
 
     }
+
+    public TaskDto(int projectId, String authorId, String title, String content, List<Tag> tags, MileStone mileStone) {
+        this.projectId = projectId;
+        this.authorId = authorId;
+        this.title = title;
+        this.content = content;
+        this.tags = tags;
+        this.mileStone = mileStone;
+    }
 }

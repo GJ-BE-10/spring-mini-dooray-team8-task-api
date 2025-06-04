@@ -32,7 +32,7 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Task> tasks = new ArrayList<>();
 
-    @OneToMany(mappedBy = "project")
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<Tag> tags = new ArrayList<>();
 
     @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)

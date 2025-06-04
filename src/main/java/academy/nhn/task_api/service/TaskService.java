@@ -30,10 +30,11 @@ public class TaskService {
         Project project = projectService.findById(dto.getProjectId());
 
         Task task = new Task(dto, project);
+        Task save = taskRepository.save(task);
         for (Tag tag : dto.getTags()) {
-            taskTagRepository.save(new TaskTag(task, tag));
+            taskTagRepository.save(new TaskTag(save, tag));
         }
-        return taskRepository.save(task);
+        return save;
     }
 
     public Task findTaskById(int taskId) {

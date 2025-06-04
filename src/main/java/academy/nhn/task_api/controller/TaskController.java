@@ -15,15 +15,15 @@ public class TaskController {
 
 
     @GetMapping("/{userId}/projects/{projectId}/tasks/{taskId}")
-    public TaskDto getTaskByTaskId(@PathVariable String userId, @PathVariable String projectId, @PathVariable int taskId) {
+    public TaskDto getTaskByTaskId(@PathVariable String userId, @PathVariable int projectId, @PathVariable int taskId) {
         TaskDto taskDto = taskService.findTaskDtoById(taskId);
         return taskDto;
     }
 
     @PostMapping("/{userId}/projects/{projectId}/tasks/new")
-    public void createTask(@PathVariable String userId, @PathVariable String projectId, @RequestBody TaskDto dto) {
+    public Task createTask(@PathVariable String userId, @PathVariable int projectId, @RequestBody TaskDto dto) {
         Task task = taskService.createTask(dto);
-        return;
+        return task;
     }
 
     @PutMapping("/{userId}/projects/{projectId}/tasks/{taskId}")
