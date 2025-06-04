@@ -21,7 +21,6 @@ public class Task {
     @Column(name = "task_id")
     private int id;
 
-    @Column(name = "task_milestone_id")
     @OneToOne
     private MileStone mileStone;
 
