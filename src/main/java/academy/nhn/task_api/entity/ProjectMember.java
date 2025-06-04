@@ -20,4 +20,9 @@ public class ProjectMember {
 
     private int projectId;
     private String memberId;
+
+    public ProjectMember(int projectId, String memberId) {
+        this.projectId = projectId;
+        this.memberId = memberId;
+    }
 }

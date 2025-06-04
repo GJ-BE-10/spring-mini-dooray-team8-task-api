@@ -9,7 +9,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
 public class MileStone {
 
@@ -28,5 +28,5 @@ public class MileStone {
     private LocalDate endDate;
 
     @ManyToOne
-    private Project projects;
+    private Project project;
 }

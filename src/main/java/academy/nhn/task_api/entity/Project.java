@@ -35,7 +35,7 @@ public class Project {
     @OneToMany(mappedBy = "project")
     private List<Tag> tags = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<MileStone> mileStones = new ArrayList<>();
 
     public Project(ProjectCreationDto dto) {
